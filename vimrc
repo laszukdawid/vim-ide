@@ -16,11 +16,11 @@ set modelines=0
 
 " ========================================================================================
 "TAB settings.
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 set expandtab
-set showtabline=2
+set showtabline=4
 set ruler
 
 " ========================================================================================
@@ -383,11 +383,10 @@ let g:miniBufExplModSelTarget = 1
 command! Sudowrite w !sudo tee % > /dev/null
 
 "==========================================================================="
-" TAB and Shift-TAB in normal mode cycle buffers
+" Left+ALT and Right+ALT in normal mode cycle buffers
 "
-nmap <Tab> :bn<CR>
-nmap <S-Tab> :bp<CR> 
-
+nmap <M-Right> :bn<CR>
+nmap <M-Left> :bp<CR>
 
 "==========================================================================="
 " highlight current line
