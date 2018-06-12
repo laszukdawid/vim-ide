@@ -12,12 +12,7 @@ fi
 cd 
 #checking whether install from vim-ide dir or dotfiles
 BASE_INSTALL_DIR=`basename $INSTALL_ROOT`
-if [ $BASE_INSTALL_DIR == "vim-ide" ];
-then
-    mv $INSTALL_ROOT $VIM_ROOT
-else 
-    ln -s $INSTALL_ROOT $VIM_ROOT
-fi
+ln -s $INSTALL_ROOT $VIM_ROOT
 
 if [ -f $HOME/.vimrc -o -L $HOME/.vimrc ]; then 
     mv $HOME/.vimrc $HOME/.vimrc_$RANDOM_NR
@@ -27,19 +22,16 @@ ln -s $VIM_ROOT/vimrc $HOME/.vimrc
 
 echo -e "Installing vim (Vi Improved) package from repository"
 #installinv vim-gnome allows copy/pasting beween vim and system clipboard
-sudo apt-get --yes install vim vim-gnome
+sudo apt --yes install vim vim-gnome
 
 echo -e "Installing ctags"
-sudo apt-get --yes install ctags
+sudo apt --yes install ctags
 
 echo -e "Installing cscope"
-sudo apt-get --yes install cscope
-
-echo -e "Installing pip for python-based dpeendencies"
-sudo apt-get --yes install pip
+sudo apt --yes install cscope
 
 echo -e "Installing python dependencies"
-sudo pip install pdb pylint
+sudo pip install pylint
 
 echo -e "Initializing and checking out plugins submodules: "
 
@@ -48,10 +40,6 @@ cd $VIM_ROOT
 
 git submodule init 
 git submodule update 
-#git submodule foreach git checkout master
-#git submodule foreach git pull origin master
-#restore all submodules to the commit which is approved by last master commit
-#git submodule update --recursive 
 
 echo -e "Installing vi_overlay" 
 
